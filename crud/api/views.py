@@ -12,6 +12,12 @@ def getTarea(request):
     serializer = TareaSerializer(tarea, many=True)
     return Response(serializer.data)
 
+@api_view(['GET'])
+def getSoloItem(request, pk):
+    tarea = Tarea.objects.get(pk=pk)
+    serializer = TareaSerializer(tarea, many=False)
+    return Response(serializer.data)
+
 @api_view(['POST'])
 def postTarea(request):
     data = request.data
